@@ -3,8 +3,6 @@ package com.vacancy.management.vacancymanagement.modules.candidate.dto;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import com.vacancy.management.vacancymanagement.modules.candidate.entities.CandidateEntity;
-
 import lombok.Getter;
 
 @Getter

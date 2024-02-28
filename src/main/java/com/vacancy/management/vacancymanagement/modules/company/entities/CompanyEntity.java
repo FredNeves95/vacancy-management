@@ -1,6 +1,7 @@
 package com.vacancy.management.vacancymanagement.modules.company.entities;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
@@ -18,7 +19,7 @@ import lombok.Data;
 public class CompanyEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  private String id;
+  private UUID id;
   
   @Pattern(regexp = "\\S+", message = "O campo [username] não deve conter espaço")
   private String username;
