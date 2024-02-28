@@ -1,4 +1,4 @@
-package com.vacancy.management.vacancymanagement.modules.candidate;
+package com.vacancy.management.vacancymanagement.modules.candidate.entities;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

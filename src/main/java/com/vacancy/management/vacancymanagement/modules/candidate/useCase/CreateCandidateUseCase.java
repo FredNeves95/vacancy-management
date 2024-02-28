@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vacancy.management.vacancymanagement.exceptions.UserFoundException;
-import com.vacancy.management.vacancymanagement.modules.candidate.CandidateEntity;
 import com.vacancy.management.vacancymanagement.modules.candidate.dto.CreateCandidateDTO;
+import com.vacancy.management.vacancymanagement.modules.candidate.entities.CandidateEntity;
 import com.vacancy.management.vacancymanagement.modules.candidate.repository.CandidateRepository;
 
 @Service

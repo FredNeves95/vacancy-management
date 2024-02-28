@@ -3,7 +3,7 @@ package com.vacancy.management.vacancymanagement.modules.candidate.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vacancy.management.vacancymanagement.modules.candidate.CandidateEntity;
+import com.vacancy.management.vacancymanagement.modules.candidate.entities.CandidateEntity;
 import com.vacancy.management.vacancymanagement.modules.candidate.useCase.CreateCandidateUseCase;
 
 import jakarta.validation.Valid;
