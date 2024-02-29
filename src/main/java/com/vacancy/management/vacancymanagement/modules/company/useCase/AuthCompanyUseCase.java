@@ -1,5 +1,8 @@
 package com.vacancy.management.vacancymanagement.modules.company.useCase;
 
+import java.time.Duration;
+import java.time.Instant;
+
 import javax.naming.AuthenticationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +40,9 @@ public class AuthCompanyUseCase {
         throw new javax.naming.AuthenticationException("Credenciais inválidas");
       }
       Algorithm algorithm = Algorithm.HMAC256(secretKey);
-      var token = JWT.create().withIssuer("vacancymanagement")
+      var token = JWT.create()
+      .withExpiresAt(Instant.now().plus(Duration.ofHours(2)))
+      .withIssuer("vacancymanagement")
       .withSubject(company.getId().toString()).sign(algorithm);
 
       return token;
