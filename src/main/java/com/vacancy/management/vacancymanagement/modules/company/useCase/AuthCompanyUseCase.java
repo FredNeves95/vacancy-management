@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.vacancy.management.vacancymanagement.exceptions.CompanyNotFoundException;
-import com.vacancy.management.vacancymanagement.modules.candidate.dto.AuthCompanyDTO;
+import com.vacancy.management.vacancymanagement.modules.company.dto.AuthCompanyDTO;
 import com.vacancy.management.vacancymanagement.modules.company.repository.CompanyRepository;
 
 @Service

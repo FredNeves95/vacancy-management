@@ -1,4 +1,4 @@
-package com.vacancy.management.vacancymanagement.modules.candidate.dto;
+package com.vacancy.management.vacancymanagement.modules.company.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
