@@ -9,4 +9,5 @@ import com.vacancy.management.vacancymanagement.modules.candidate.entities.Candi
 
 public interface CandidateRepository extends JpaRepository<CandidateEntity, UUID> {
   Optional<CandidateEntity> findByEmailOrUsername(String email, String username);
+  Optional<CandidateEntity> findByUsername(String username);
 }
