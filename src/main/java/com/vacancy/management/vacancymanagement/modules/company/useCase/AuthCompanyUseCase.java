@@ -15,6 +15,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.vacancy.management.vacancymanagement.exceptions.CompanyNotFoundException;
 import com.vacancy.management.vacancymanagement.modules.company.dto.AuthCompanyDTO;
+import com.vacancy.management.vacancymanagement.modules.company.dto.AuthCompanyResponseDTO;
 import com.vacancy.management.vacancymanagement.modules.company.repository.CompanyRepository;
 
 @Service
@@ -28,7 +29,7 @@ public class AuthCompanyUseCase {
   @Value("${security.token.secret}")
   private String secretKey;
 
-  public String execute(AuthCompanyDTO authCompanyDTO) throws AuthenticationException {
+  public AuthCompanyResponseDTO execute(AuthCompanyDTO authCompanyDTO) throws AuthenticationException {
     var company = companyRepository.findByUsername(authCompanyDTO.getUsername()).orElseThrow(
       () -> {
         throw new CompanyNotFoundException();
@@ -45,9 +46,10 @@ public class AuthCompanyUseCase {
       .withExpiresAt(Instant.now().plus(Duration.ofHours(2)))
       .withIssuer("vacancymanagement")
       .withSubject(company.getId().toString())
-      .withClaim("role", Arrays.asList("COMPANY"))
+      .withClaim("roles", Arrays.asList("COMPANY"))
       .sign(algorithm);
 
-      return token;
+      var authCompanyResponseDTO = AuthCompanyResponseDTO.builder().access_token(token).build();
+      return authCompanyResponseDTO;
   }
 }
