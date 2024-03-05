@@ -45,7 +45,7 @@ public class AuthCantidadeUseCase {
     .withExpiresAt(Instant.now().plus(Duration.ofHours(2)))
     .withIssuer("vacancymanagement")
     .withSubject(candidate.getId().toString())
-    .withClaim("roles", Arrays.asList("candidate"))
+    .withClaim("roles", Arrays.asList("CANDIDATE"))
     .sign(algorithm);
 
     var authCandidateResponse = AuthCandidateResponseDTO.builder().access_token(token).build();

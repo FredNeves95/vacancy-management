@@ -2,6 +2,7 @@ package com.vacancy.management.vacancymanagement.modules.company.useCase;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
 
 import javax.naming.AuthenticationException;
 
@@ -43,7 +44,9 @@ public class AuthCompanyUseCase {
       var token = JWT.create()
       .withExpiresAt(Instant.now().plus(Duration.ofHours(2)))
       .withIssuer("vacancymanagement")
-      .withSubject(company.getId().toString()).sign(algorithm);
+      .withSubject(company.getId().toString())
+      .withClaim("role", Arrays.asList("COMPANY"))
+      .sign(algorithm);
 
       return token;
   }
