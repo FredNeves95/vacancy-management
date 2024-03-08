@@ -40,7 +40,6 @@ public class CandidateController {
   }
 
   @GetMapping("")
-  @PreAuthorize("hasRole('CANDIDATE')")
   public ResponseEntity<Object> get(HttpServletRequest request) {
     try {
       var candidateId = request.getAttribute("candidate_id").toString();

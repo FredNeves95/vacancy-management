@@ -16,8 +16,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.vacancy.management.vacancymanagement.exceptions.JobNotFoundException;
 import com.vacancy.management.vacancymanagement.modules.candidate.entities.CandidateEntity;
+import com.vacancy.management.vacancymanagement.modules.candidate.repository.ApplyJobRepository;
 import com.vacancy.management.vacancymanagement.modules.candidate.repository.CandidateRepository;
 import com.vacancy.management.vacancymanagement.modules.candidate.useCase.ApplyJobCandidateUseCase;
+import com.vacancy.management.vacancymanagement.modules.company.entities.JobEntity;
 import com.vacancy.management.vacancymanagement.modules.company.repository.JobRepository;
 import java.util.Optional;
 
@@ -33,6 +35,9 @@ public class ApplyJobCandidateUseCaseTest {
 
   @Mock
   private JobRepository jobRepository;
+
+  @Mock
+  private ApplyJobRepository applyJobRepository;
 
   @Test
   @DisplayName("Should not be able to apply for a job when candidate is not found")
@@ -61,5 +66,25 @@ public class ApplyJobCandidateUseCaseTest {
     assertThat(e).isInstanceOf(JobNotFoundException.class);
     assert e.getMessage().equals("Job not found");
   }
+  }
+
+  @Test
+  @DisplayName("Should be able to apply for a job")
+  public void should_be_able_to_apply_for_a_job(){
+    var candidateId = UUID.randomUUID();
+    var candidate = new CandidateEntity(); 
+    candidate.setId(candidateId);
+    when(candidateRepository.findById(candidateId)).thenReturn(Optional.of(candidate));
+
+    var jobId = UUID.randomUUID();
+    var job = new JobEntity(); 
+    job.setId(jobId);
+    when(jobRepository.findById(jobId)).thenReturn(Optional.of(job));
+
+    var applyJob = applyJobCandidateUseCase.execute(candidateId, jobId);
+
+    assertThat(applyJob).isNotNull();
+    assertThat(applyJob.getCandidateId()).isEqualTo(candidate.getId());
+    assertThat(applyJob.getJobId()).isEqualTo(job.getId());
   }
 }
